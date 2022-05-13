@@ -35,6 +35,21 @@ describe('Series', () => {
     expect(series.price).toBe(2*8*2*0.95);
   })
 
+  test('different books', () =>{
+    checkout([1,1,0,0,0]);
+    expect(series.price).toBe(8 * 2 * 0.95);
+
+    checkout([1,0,1,1,0]);
+    expect(series.price).toBe(8 * 3 * 0.9);
+
+    checkout([1,0,1,1,1]);
+    expect(series.price).toBe(8 * 4 * 0.8);
+
+    checkout([1,1,1,1,1]);
+    expect(series.price).toBe(8 * 5 * 0.75);
+
+  })
+
   // Functions
   function checkout(books: number[]) {
     series.buy(books);
