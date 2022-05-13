@@ -13,16 +13,38 @@ export class Series {
     8*5*0.75
   ];
 
-  clear() {
-    this.books = [0,0,0,0,0];
-  }
+  sum(arr: number[]) {
+    let total = 0;
+    for (let i=0; i<arr.length; i++)
+      total += arr[i];
 
-  buy(book: number, amount:number) {
-    this.books[book] += amount;
+    return total;
   }
 
   set_sets(sets: number[]) {
     this.sets = sets;
+  }
+
+  buy(books: number[]) {
+    this.books = books;
+    this.package();
+  }
+
+  package() {
+    this.sets = [0,0,0,0,0];
+    while (this.sum(this.books) != 0) {
+      let _set = 0;
+      for (let i=0; i<this.books.length; i++) {
+        if (this.books[i] != 0) {
+          _set += 1;
+          this.books[i] -= 1;
+        }
+      }
+      if (_set == 0)
+        continue;
+      else
+        this.sets[_set-1] += 1;
+    }
   }
 
 
