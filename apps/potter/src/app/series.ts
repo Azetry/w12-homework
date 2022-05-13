@@ -1,6 +1,10 @@
 export class Series {
   private books: number[] = [0,0,0,0,0];
 
+  clear() {
+    this.books = [0,0,0,0,0];
+  }
+
   buy(book: number, amount:number) {
     this.books[book] += amount;
   }
