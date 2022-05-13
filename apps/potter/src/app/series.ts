@@ -8,6 +8,10 @@ export class Series {
   get price() {
     let price = 0;
 
+    for (let i = 0; i < this.books.length; i++) {
+      price += this.books[i]*8
+    }
+
     return price;
   }
 }
