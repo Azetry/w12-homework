@@ -64,6 +64,15 @@ describe('Series', () => {
 
   })
 
+  test('serveral books (optimized)', () => {
+    checkout([2,2,2,1,1]);
+    expect(series.price).toBe(2 * (8 * 4 * 0.8));
+
+    checkout([5,5,4,5,4]);
+    expect(series.price).toBe(3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8));
+
+  })
+
 
   // Functions
   function checkout(books: number[]) {

@@ -28,6 +28,7 @@ export class Series {
 
   buy(books: number[]) {
     this.package([...books]);
+    this.optimize();
   }
 
   package(books: number[]) {
@@ -45,6 +46,17 @@ export class Series {
       else
         this.sets[_set-1] += 1;
     }
+  }
+
+  optimize() {
+    // if 5+3 -> 4+4
+    // find the maximum amount of combination 5+3 (find minimum)
+    const combinations = this.sets[4]>this.sets[2] ? this.sets[2] : this.sets[4];
+
+    // change
+    this.sets[2] -= combinations;
+    this.sets[4] -= combinations;
+    this.sets[3] += 2*combinations;
   }
 
 
