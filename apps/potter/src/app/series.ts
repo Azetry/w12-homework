@@ -1,7 +1,4 @@
 export class Series {
-  // books
-  // amount of first to fifth book
-  private books: number[] = [0,0,0,0,0];
   // sets
   // amount of 1 set, 2 set ... to 5 set (different books)
   private sets: number[] = [0,0,0,0,0];
@@ -21,26 +18,29 @@ export class Series {
     return total;
   }
 
-  set_sets(sets: number[]) {
+  isEmpty(num: number) {
+    return num == 0;
+  }
+
+  setSets(sets: number[]) {
     this.sets = sets;
   }
 
   buy(books: number[]) {
-    this.books = books;
-    this.package();
+    this.package([...books]);
   }
 
-  package() {
+  package(books: number[]) {
     this.sets = [0,0,0,0,0];
-    while (this.sum(this.books) != 0) {
+    while (!this.isEmpty( this.sum(books) )) {
       let _set = 0;
-      for (let i=0; i<this.books.length; i++) {
-        if (this.books[i] != 0) {
+      for (let i=0; i<books.length; i++) {
+        if (!this.isEmpty( books[i] )) {
           _set += 1;
-          this.books[i] -= 1;
+          books[i] -= 1;
         }
       }
-      if (_set == 0)
+      if (this.isEmpty( _set ))
         continue;
       else
         this.sets[_set-1] += 1;
